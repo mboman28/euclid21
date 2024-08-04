@@ -3,13 +3,20 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import DataContext from './providers';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+const data: any = require('./data/data.json');
+console.log(data);
+
 root.render(
   <React.StrictMode>
-    <App />
+    <DataContext.Provider value={{ data }}>
+      <App />
+    </DataContext.Provider>
   </React.StrictMode>
 );
 
