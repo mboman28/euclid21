@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import App from './components/App';
 import reportWebVitals from './reportWebVitals';
+
 import DataContext from './providers';
+import { Data } from './types/types';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-const data: any = require('./data/data.json');
-console.log(data);
+const data: Data = require('./data/data.json');
 
 root.render(
   <React.StrictMode>
