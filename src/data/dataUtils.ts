@@ -6,3 +6,11 @@ export const getNode = (data: Data, name: string) => {
 
     return data[book][kind][prop]
 }
+
+export const getKind = (kind: string) => {
+    if (kind === 'A') { return 'Axiom'; }
+    if (kind === 'N') { return 'Common Notion'; }
+    if (kind === 'D') { return 'Definition'; }
+    if (kind === 'P') { return 'Propositon'; }
+    return '';
+}
