@@ -7,8 +7,6 @@ import {
     Item as CtxMenuItem
 } from "@radix-ui/react-context-menu";
 
-// import * as ContextMenu from '@radix-ui/react-context-menu';
-
 import { Node, NodeOperations } from '../types/types'
 
 import { getColor, getNode } from "../data/dataUtils";
@@ -35,7 +33,6 @@ type NodeMenuProps = {
 }
 
 const NodeMenu: React.FC<NodeMenuProps> = ({ node, nodeOps }) => {
-
     return (
         <CtxMenuContent style={{ background: 'white', boxShadow: '0 0 10px rgba(0, 0, 0, 0.3)', padding: 5 }}>
             <CtxMenuItem onSelect={() => nodeOps.displayNode(node)}>Display This Node</CtxMenuItem>
@@ -51,10 +48,11 @@ type NodeComponentProps = {
     x: number;
     y: number;
     dragFunc: (e: any, node: string) => void;
-    select: () => void;
+    selectCtxMenu: () => void;
+    displayDoc: (n: string) => void;
 }
 
-const NodeComponent: React.FC<NodeComponentProps> = ({ nodeName, x, y, dragFunc, select }) => {
+const NodeComponent: React.FC<NodeComponentProps> = ({ nodeName, x, y, dragFunc, selectCtxMenu, displayDoc }) => {
     const color = getColor(nodeName[0]);
     return (
         <Group
@@ -63,7 +61,8 @@ const NodeComponent: React.FC<NodeComponentProps> = ({ nodeName, x, y, dragFunc,
             x={x}
             y={y}
             onDragMove={(e) => { dragFunc(e, nodeName) }}
-            onContextMenu={select}
+            onContextMenu={selectCtxMenu}
+            onDblClick={() => displayDoc(nodeName)}
         >
             <Circle
                 fill={color}
@@ -101,7 +100,8 @@ const EuclidCanvas: React.FC<EuclidCanvasProps> = ({ nodes, edges, nodeOperation
             dragFunc={handleStepDrag}
             x={nodes[nodeName].x}
             y={nodes[nodeName].y}
-            select={() => setSelected(nodeName)}
+            selectCtxMenu={() => setSelected(nodeName)}
+            displayDoc={(n: string) => nodeOperations.showNodeText(n)}
         />)
 
     const edgeObjs = Array.from(edges).map((edge) => {
