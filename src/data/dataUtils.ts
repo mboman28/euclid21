@@ -7,6 +7,13 @@ export const getNode = (data: Data, name: string) => {
     return data[book][kind][prop]
 }
 
+export const getColor = (kind: string) => {
+    if (kind === 'A') { return 'lightblue'; }
+    if (kind === 'N') { return 'pink'; }
+    if (kind === 'D') { return 'lightgreen'; }
+    return 'yellow';
+}
+
 export const getKind = (kind: string) => {
     if (kind === 'A') { return 'Axiom'; }
     if (kind === 'N') { return 'Common Notion'; }
