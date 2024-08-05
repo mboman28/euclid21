@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import DataContext from "../providers";
 
@@ -7,8 +7,8 @@ import { DataContextType, Node } from "../types/types";
 import { getDeps, getRoot, getBranch, removeNode } from "../data/dataUtils";
 
 import EuclidCanvas from "./EuclidCanvas";
-import NavBar from "./NavBar";
 import NodeTextModal from "./NodeTextModal";
+import { useSearchParams } from "react-router-dom";
 
 type MainProps = {
 }
@@ -18,6 +18,7 @@ const Main: React.FC<MainProps> = ({ }) => {
     const [openNode, setOpenNode] = useState<string>('');
     const [nodes, setNodes] = useState<{ [key: string]: Node }>({});
     const [edges, setEdges] = useState<Set<string>>(new Set<string>());
+    const [searchParams] = useSearchParams();
 
     const updateNodes = (nodes: { [key: string]: Node }) => {
         for (const nodeName in nodes) {
@@ -69,10 +70,16 @@ const Main: React.FC<MainProps> = ({ }) => {
         showNodeText: showNodeText,
     }
 
+    useEffect(() => {
+        const nodeParam = searchParams.get('p');
+        if (nodeParam === null) { return; }
+        displayNode(nodeParam);
+        
+    }, [searchParams])
+
     return (
         <>
             <NodeTextModal node={openNode} closeModal={() => setOpenNode('')} />
-            <NavBar updateDisplay={displayNode} />
             <EuclidCanvas nodes={nodes} edges={edges} nodeOperations={nodeOps} setNodes={setNodes} />
         </>
     );

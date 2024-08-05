@@ -4,6 +4,7 @@ import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import React, { useContext } from "react";
 import { PopupState as PopupStateType } from "material-ui-popup-state/hooks";
 import { NestedMenuItem } from "mui-nested-menu";
+import { Link, useNavigate } from "react-router-dom";
 
 import DataContext from "../providers";
 import { DataContextType } from "../types/types";
@@ -11,12 +12,11 @@ import { getKind } from "../data/dataUtils";
 
 type DataMenuProps = {
     popupState: PopupStateType;
-    updateDisplay: (n: string) => void;
 }
 
-const DataMenu: React.FC<DataMenuProps> = ({ popupState, updateDisplay }) => {
-
+const DataMenu: React.FC<DataMenuProps> = ({ popupState }) => {
     const { data } = useContext(DataContext) as DataContextType;
+    const navigate = useNavigate();
 
     return (
         <Menu {...bindMenu(popupState)}>
@@ -28,7 +28,7 @@ const DataMenu: React.FC<DataMenuProps> = ({ popupState, updateDisplay }) => {
                     {Object.keys(data[bookNum]).map((kind: string) =>
                         <NestedMenuItem key={kind} label={getKind(kind) + 's'} parentMenuOpen>
                             {Object.keys(data[bookNum][kind]).map((prop: string) =>
-                                <MenuItem key={prop} onClick={() => { updateDisplay(kind + bookNum + '.' + prop) }}>{getKind(kind) + ' ' + prop}</MenuItem>
+                                <MenuItem key={prop} onClick={() => { navigate('/?p=' + kind + bookNum + '.' + prop)}}>{getKind(kind) + ' ' + prop}</MenuItem>
                             )}
                         </NestedMenuItem>
                     )}
@@ -39,11 +39,10 @@ const DataMenu: React.FC<DataMenuProps> = ({ popupState, updateDisplay }) => {
 }
 
 type NavBarProps = {
-    // setNode: (n: string) => void;
-    updateDisplay: (n: string) => void;
 }
 
-const NavBar: React.FC<NavBarProps> = ({ updateDisplay }) => {
+const NavBar: React.FC<NavBarProps> = () => {
+    const navigate = useNavigate();
     return (
         <AppBar position="static">
             <Toolbar>
@@ -60,14 +59,15 @@ const NavBar: React.FC<NavBarProps> = ({ updateDisplay }) => {
                             >
                                 <MenuIcon />
                             </IconButton>
-                            <DataMenu popupState={popupState} updateDisplay={updateDisplay} />
+                            <DataMenu popupState={popupState} />
                         </>
                     )}
                 </PopupState>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     Euclid<sup>21</sup> Dependency Visualizer
                 </Typography>
-                <StyledButton>About</StyledButton>
+                <StyledButton onClick={() => { navigate('/help') }}>Help</StyledButton>
+                <StyledButton onClick={() => { navigate('/about') }}>About</StyledButton>
             </Toolbar>
         </AppBar>
     );
