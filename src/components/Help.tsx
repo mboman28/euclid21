@@ -9,9 +9,12 @@ const Help: React.FC<HelpProps> = () => {
         <Container>
             <h4>Functionality:</h4>
             <ol>
-                <li>This application represents all 13 books of Euclid’s The Elements. Each proposition is rendered visually as a circular node with arrows pointing into or out of it. For example, Book 1, Proposition 47 (The Pythagorean Theorem) appears as a yellow circle with “1.47” in black text inside of it.<br />
-                    Arrows pointing into a node originate at a node which is used to prove the proposition.<br />
-                    Arrows originating at node 1.47 point to propositions which cite it.</li>
+                <li>This application represents all 13 books of Euclid’s <em>The Elements.</em> Each proposition is rendered visually as a circular node with arrows pointing into or out of it. For example, Book 1, Proposition 47 (The Pythagorean Theorem) appears as a yellow circle with “1.47” in black text inside of it.<br />
+                    <ul>
+                        <li>Arrows pointing into a node originate at a node which is used to prove the proposition.</li>
+                        <li>Arrows originating at a node point to propositions which cite it.</li>
+                    </ul>
+                </li>
                 <li>Nodes are displayed as follows:
                     <ul>
                         <li>Yellow: Propositions</li>
