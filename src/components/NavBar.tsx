@@ -11,10 +11,10 @@ import { getKind } from "../data/dataUtils";
 
 type DataMenuProps = {
     popupState: PopupStateType;
-    setNode: (n: string) => void;
+    updateDisplay: (n: string) => void;
 }
 
-const DataMenu: React.FC<DataMenuProps> = ({ popupState, setNode }) => {
+const DataMenu: React.FC<DataMenuProps> = ({ popupState, updateDisplay }) => {
 
     const { data } = useContext(DataContext) as DataContextType;
 
@@ -27,7 +27,7 @@ const DataMenu: React.FC<DataMenuProps> = ({ popupState, setNode }) => {
                     {Object.keys(data[bookNum]).map((kind: string) =>
                         <NestedMenuItem label={getKind(kind) + 's'} parentMenuOpen>
                             {Object.keys(data[bookNum][kind]).map((prop: string) =>
-                                <MenuItem onClick={() => { setNode(kind + bookNum + '.' + prop) }}>{getKind(kind) + ' ' + prop}</MenuItem>
+                                <MenuItem onClick={() => { updateDisplay(kind + bookNum + '.' + prop) }}>{getKind(kind) + ' ' + prop}</MenuItem>
                             )}
                         </NestedMenuItem>
                     )}
@@ -39,10 +39,10 @@ const DataMenu: React.FC<DataMenuProps> = ({ popupState, setNode }) => {
 
 type NavBarProps = {
     // setNode: (n: string) => void;
-    chooseNodes: (n: string) => void;
+    updateDisplay: (n: string) => void;
 }
 
-const NavBar: React.FC<NavBarProps> = ({ chooseNodes }) => {
+const NavBar: React.FC<NavBarProps> = ({ updateDisplay }) => {
     return (
         <AppBar position="static">
             <Toolbar>
@@ -59,7 +59,7 @@ const NavBar: React.FC<NavBarProps> = ({ chooseNodes }) => {
                             >
                                 <MenuIcon />
                             </IconButton>
-                            <DataMenu popupState={popupState} setNode={chooseNodes} />
+                            <DataMenu popupState={popupState} updateDisplay={updateDisplay} />
                         </>
                     )}
                 </PopupState>

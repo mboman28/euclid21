@@ -1,11 +1,18 @@
-import { useContext, useEffect, useRef, useState } from "react"
-import { Stage, Layer, Circle, Group, Text, Arrow, KonvaNodeComponent, Line } from "react-konva";
+import { useState } from "react";
+import { Stage, Layer, Circle, Group, Text, Arrow } from "react-konva";
+import {
+    Root as CtxMenuRoot,
+    Trigger as CtxMenuTrigger,
+    Content as CtxMenuContent,
+    Item as CtxMenuItem
+} from "@radix-ui/react-context-menu";
 
-import DataContext from "../providers";
+// import * as ContextMenu from '@radix-ui/react-context-menu';
 
-import { DataContextType, Edge, Node } from '../types/types'
+import { Node, NodeOperations } from '../types/types'
 
 import { getColor, getNode } from "../data/dataUtils";
+
 
 function createConnectionPoints(from: Node, to: Node) {
     const dx = to.x - from.x;
@@ -22,43 +29,60 @@ function createConnectionPoints(from: Node, to: Node) {
     ];
 }
 
+type NodeMenuProps = {
+    node: string;
+    nodeOps: NodeOperations;
+}
+
+const NodeMenu: React.FC<NodeMenuProps> = ({ node, nodeOps }) => {
+
+    return (
+        <CtxMenuContent style={{ background: 'white', boxShadow: '0 0 10px rgba(0, 0, 0, 0.3)', padding: 5 }}>
+            <CtxMenuItem onSelect={() => nodeOps.displayNode(node)}>Display This Node</CtxMenuItem>
+            <CtxMenuItem onSelect={() => nodeOps.displayNodeRoot(node)}>Display Root</CtxMenuItem>
+            <CtxMenuItem onSelect={() => nodeOps.displayNodeBranch(node)}>Display Branch</CtxMenuItem>
+            <CtxMenuItem onSelect={() => nodeOps.removeNode(node)}>Hide this Node</CtxMenuItem>
+        </CtxMenuContent>
+    );
+}
+
 type NodeComponentProps = {
     nodeName: string;
     x: number;
     y: number;
     dragFunc: (e: any, node: string) => void;
+    select: () => void;
 }
 
-const NodeComponent: React.FC<NodeComponentProps> = ({ nodeName, x, y, dragFunc }) => {
+const NodeComponent: React.FC<NodeComponentProps> = ({ nodeName, x, y, dragFunc, select }) => {
     const color = getColor(nodeName[0]);
     return (
-        // <ContextMenu menu={<div>Hello</div>}>
-
         <Group
             key={nodeName}
             draggable
             x={x}
             y={y}
             onDragMove={(e) => { dragFunc(e, nodeName) }}
-        // onContextMenu={(e) => console.log('hello')}
+            onContextMenu={select}
         >
             <Circle
                 fill={color}
                 radius={25}
             />
-            <Text fill='black' text={nodeName} x={-10} y={-3} />
+            <Text fill='black' text={nodeName} x={-25} y={-25} width={50} height={50} align="center" verticalAlign="middle" />
         </Group>
-        // </ContextMenu>
     );
 }
 
 type EuclidCanvasProps = {
     nodes: { [key: string]: Node };
     edges: Set<string>;
+    nodeOperations: NodeOperations;
     setNodes: (n: { [key: string]: Node }) => void;
 }
 
-const EuclidCanvas: React.FC<EuclidCanvasProps> = ({ nodes, edges, setNodes }) => {
+const EuclidCanvas: React.FC<EuclidCanvasProps> = ({ nodes, edges, nodeOperations, setNodes }) => {
+    const [selected, setSelected] = useState<string>('');
 
     function handleStepDrag(e: any, key: string) {
         const position = e.target.position();
@@ -77,6 +101,7 @@ const EuclidCanvas: React.FC<EuclidCanvasProps> = ({ nodes, edges, setNodes }) =
             dragFunc={handleStepDrag}
             x={nodes[nodeName].x}
             y={nodes[nodeName].y}
+            select={() => setSelected(nodeName)}
         />)
 
     const edgeObjs = Array.from(edges).map((edge) => {
@@ -94,6 +119,7 @@ const EuclidCanvas: React.FC<EuclidCanvasProps> = ({ nodes, edges, setNodes }) =
                 x={fromNode.x}
                 y={fromNode.y}
                 points={points}
+                strokeWidth={1}
                 stroke='black'
                 fill='black'
             />
@@ -101,14 +127,17 @@ const EuclidCanvas: React.FC<EuclidCanvasProps> = ({ nodes, edges, setNodes }) =
     });
 
     return (
-        <>
-            <Stage width={window.innerWidth} height={window.innerHeight}>
-                <Layer>
-                    {edgeObjs}
-                    {nodeObjs}
-                </Layer>
-            </Stage>
-        </>
+        <CtxMenuRoot>
+            <CtxMenuTrigger>
+                <Stage width={window.innerWidth} height={window.innerHeight} onClick={() => setSelected('')}>
+                    <Layer>
+                        {edgeObjs}
+                        {nodeObjs}
+                    </Layer>
+                </Stage>
+            </CtxMenuTrigger>
+            {selected ? <NodeMenu node={selected} nodeOps={nodeOperations} /> : null}
+        </CtxMenuRoot>
     )
 }
 
