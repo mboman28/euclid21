@@ -8,5 +8,5 @@ export type NodeOperations = {
     displayNode: (n: string) => void;
     displayNodeRoot: (n: string) => void;
     displayNodeBranch: (n: string) => void;
-    removeNode: (n: string) => void;
+    hideNode: (n: string) => void;
 }

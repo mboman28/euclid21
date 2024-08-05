@@ -41,7 +41,7 @@ const NodeMenu: React.FC<NodeMenuProps> = ({ node, nodeOps }) => {
             <CtxMenuItem onSelect={() => nodeOps.displayNode(node)}>Display This Node</CtxMenuItem>
             <CtxMenuItem onSelect={() => nodeOps.displayNodeRoot(node)}>Display Root</CtxMenuItem>
             <CtxMenuItem onSelect={() => nodeOps.displayNodeBranch(node)}>Display Branch</CtxMenuItem>
-            <CtxMenuItem onSelect={() => nodeOps.removeNode(node)}>Hide this Node</CtxMenuItem>
+            <CtxMenuItem onSelect={() => nodeOps.hideNode(node)}>Hide this Node</CtxMenuItem>
         </CtxMenuContent>
     );
 }

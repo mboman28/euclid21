@@ -3,7 +3,7 @@ import EuclidCanvas from "./EuclidCanvas";
 import NavBar from "./NavBar";
 import DataContext from "../providers";
 import { DataContextType, Node } from "../types/types";
-import { getDeps } from "../data/dataUtils";
+import { getBranch, getDeps, getRoot, removeNode } from "../data/dataUtils";
 
 function App() {
   const { data } = useContext(DataContext) as DataContextType;
@@ -11,16 +11,36 @@ function App() {
   const [edges, setEdges] = useState<Set<string>>(new Set<string>());
 
   const displayNode = (node: string) => {
-    let [nodes, edges] = getDeps(data, node, 700, 400);
+    const [nodes, edges] = getDeps(data, node, 700, 400);
     setNodes(nodes);
     setEdges(edges);
   }
 
+  const displayNodeRoot = (node: string) => {
+    const [rootNodes, rootEdges] = getRoot(data, node, nodes[node].x, nodes[node].y);
+    const edgesList: string[] = Array.from(edges).concat(Array.from(rootEdges))
+    setNodes({...nodes, ...rootNodes});
+    setEdges(new Set<string>(edgesList));
+  }
+
+  const displayNodeBranch = (node: string) => {
+    const [rootNodes, rootEdges] = getBranch(data, node, nodes[node].x, nodes[node].y);
+    const edgesList: string[] = Array.from(edges).concat(Array.from(rootEdges))
+    setNodes({...nodes, ...rootNodes});
+    setEdges(new Set<string>(edgesList));
+  }
+  
+  const hideNode = (node: string) => {
+    const [newNodes, newEdges] = removeNode(data, node, nodes, edges);
+    setNodes({...newNodes});
+    setEdges(newEdges);
+  }
+
   const nodeOps = {
     displayNode: displayNode,
-    displayNodeRoot: displayNode,
-    displayNodeBranch: displayNode,
-    removeNode: displayNode,
+    displayNodeRoot: displayNodeRoot,
+    displayNodeBranch: displayNodeBranch,
+    hideNode: hideNode,
   }
 
   return (
