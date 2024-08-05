@@ -3,13 +3,12 @@ import { Stage, Layer, Circle, Group, Text, Arrow } from "react-konva";
 import {
     Root as CtxMenuRoot,
     Trigger as CtxMenuTrigger,
-    Content as CtxMenuContent,
-    Item as CtxMenuItem
 } from "@radix-ui/react-context-menu";
 
 import { Node, NodeOperations } from '../types/types'
 
 import { getColor } from "../data/dataUtils";
+import NodeMenu from "./NodeMenu";
 
 
 function createConnectionPoints(from: Node, to: Node) {
@@ -25,24 +24,6 @@ function createConnectionPoints(from: Node, to: Node) {
         to.x + -radius * Math.cos(angle),
         to.y + radius * Math.sin(angle),
     ];
-}
-
-type NodeMenuProps = {
-    node: string;
-    nodeOps: NodeOperations;
-    highlight: (n: string) => void;
-}
-
-const NodeMenu: React.FC<NodeMenuProps> = ({ node, nodeOps, highlight }) => {
-    return (
-        <CtxMenuContent style={{ background: 'white', boxShadow: '0 0 10px rgba(0, 0, 0, 0.3)', padding: 5 }}>
-            <CtxMenuItem onSelect={() => nodeOps.displayNode(node)}>Display This Node</CtxMenuItem>
-            <CtxMenuItem onSelect={() => nodeOps.displayNodeRoot(node)}>Display Root</CtxMenuItem>
-            <CtxMenuItem onSelect={() => nodeOps.displayNodeBranch(node)}>Display Branch</CtxMenuItem>
-            <CtxMenuItem onSelect={() => nodeOps.hideNode(node)}>Hide this Node</CtxMenuItem>
-            <CtxMenuItem onSelect={() => highlight(node)}>Highlight</CtxMenuItem>
-        </CtxMenuContent>
-    );
 }
 
 type NodeComponentProps = {
@@ -106,6 +87,7 @@ const EuclidCanvas: React.FC<EuclidCanvasProps> = ({ nodes, edges, nodeOperation
         });
     }
 
+    // TODO: Don't allow nodes to go offscreen
     const nodeObjs = Object.keys(nodes).map((nodeName: string) =>
         <NodeComponent
             key={nodeName}

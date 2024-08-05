@@ -51,6 +51,7 @@ function App() {
     showNodeText: showNodeText,
   }
 
+  // TODO: react router + about page
   return (
     <>
       <NodeTextModal node={openNode} closeModal={() => setOpenNode('')} />
