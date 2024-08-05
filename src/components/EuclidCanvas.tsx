@@ -87,7 +87,6 @@ const EuclidCanvas: React.FC<EuclidCanvasProps> = ({ nodes, edges, nodeOperation
         });
     }
 
-    // TODO: Don't allow nodes to go offscreen
     const nodeObjs = Object.keys(nodes).map((nodeName: string) =>
         <NodeComponent
             key={nodeName}
