@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import DataContext from "../providers";
 
@@ -8,12 +9,12 @@ import { getDeps, getRoot, getBranch, removeNode } from "../data/dataUtils";
 
 import EuclidCanvas from "./EuclidCanvas";
 import NodeTextModal from "./NodeTextModal";
-import { useSearchParams } from "react-router-dom";
+import Home from "./Home";
 
 type MainProps = {
 }
 
-const Main: React.FC<MainProps> = ({ }) => {
+const Main: React.FC<MainProps> = () => {
     const { data } = useContext(DataContext) as DataContextType;
     const [openNode, setOpenNode] = useState<string>('');
     const [nodes, setNodes] = useState<{ [key: string]: Node }>({});
@@ -75,12 +76,17 @@ const Main: React.FC<MainProps> = ({ }) => {
         if (nodeParam === null) { return; }
         displayNode(nodeParam);
         
+        // eslint-disable-next-line
     }, [searchParams])
 
     return (
         <>
-            <NodeTextModal node={openNode} closeModal={() => setOpenNode('')} />
-            <EuclidCanvas nodes={nodes} edges={edges} nodeOperations={nodeOps} setNodes={setNodes} />
+            {Object.keys(nodes).length === 0 ?
+                <Home /> :
+                <>
+                    <NodeTextModal node={openNode} closeModal={() => setOpenNode('')} />
+                    <EuclidCanvas nodes={nodes} edges={edges} nodeOperations={nodeOps} setNodes={setNodes} />
+                </>}
         </>
     );
 }

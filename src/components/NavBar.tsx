@@ -4,7 +4,7 @@ import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import React, { useContext } from "react";
 import { PopupState as PopupStateType } from "material-ui-popup-state/hooks";
 import { NestedMenuItem } from "mui-nested-menu";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import DataContext from "../providers";
 import { DataContextType } from "../types/types";
@@ -63,8 +63,8 @@ const NavBar: React.FC<NavBarProps> = () => {
                         </>
                     )}
                 </PopupState>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    Euclid<sup>21</sup> Dependency Visualizer
+                <Typography variant="h6" component="div" onClick={ () => { navigate('/')} } sx={{ flexGrow: 1, cursor: 'pointer' }}>
+                    Euclid<sup>21</sup>: Euclid's Elements for the 21st Century
                 </Typography>
                 <StyledButton onClick={() => { navigate('/help') }}>Help</StyledButton>
                 <StyledButton onClick={() => { navigate('/about') }}>About</StyledButton>
