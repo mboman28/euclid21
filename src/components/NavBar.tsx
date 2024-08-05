@@ -38,10 +38,11 @@ const DataMenu: React.FC<DataMenuProps> = ({ popupState, setNode }) => {
 }
 
 type NavBarProps = {
-    setNode: (n: string) => void;
+    // setNode: (n: string) => void;
+    chooseNodes: (n: string) => void;
 }
 
-const NavBar: React.FC<NavBarProps> = ({ setNode }) => {
+const NavBar: React.FC<NavBarProps> = ({ chooseNodes }) => {
     return (
         <AppBar position="static">
             <Toolbar>
@@ -58,12 +59,12 @@ const NavBar: React.FC<NavBarProps> = ({ setNode }) => {
                             >
                                 <MenuIcon />
                             </IconButton>
-                            <DataMenu popupState={popupState} setNode={setNode} />
+                            <DataMenu popupState={popupState} setNode={chooseNodes} />
                         </>
                     )}
                 </PopupState>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    Euclid 21 Dependency Visualizer
+                    Euclid<sup>21</sup> Dependency Visualizer
                 </Typography>
             </Toolbar>
         </AppBar>
