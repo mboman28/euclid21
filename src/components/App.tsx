@@ -1,12 +1,15 @@
 import { useContext, useState } from "react";
-import EuclidCanvas from "./EuclidCanvas";
-import NavBar from "./NavBar";
+import ReactModal from 'react-modal';
+
 import DataContext from "../providers";
 import { DataContextType, Node } from "../types/types";
+import EuclidCanvas from "./EuclidCanvas";
+import NavBar from "./NavBar";
 import { getBranch, getDeps, getRoot, removeNode } from "../data/dataUtils";
 
 function App() {
   const { data } = useContext(DataContext) as DataContextType;
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [nodes, setNodes] = useState<{ [key: string]: Node }>({});
   const [edges, setEdges] = useState<Set<string>>(new Set<string>());
 
@@ -41,10 +44,12 @@ function App() {
     displayNodeRoot: displayNodeRoot,
     displayNodeBranch: displayNodeBranch,
     hideNode: hideNode,
+    showNodeText: (n: string) => {}
   }
 
   return (
     <>
+      <ReactModal isOpen={modalOpen}></ReactModal>
       <NavBar updateDisplay={displayNode} />
       <EuclidCanvas nodes={nodes} edges={edges} nodeOperations={nodeOps} setNodes={setNodes} />
     </>
