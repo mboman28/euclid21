@@ -1,27 +1,6 @@
 import { Data, Node } from "../types/types"
 
-export const getNode = (data: Data, name: string) => {
-    const kind = name[0];
-    const [book, prop] = name.slice(1).split('.')
-
-    return data[book][kind][prop]
-}
-
-export const getColor = (kind: string) => {
-    if (kind === 'A') { return 'lightblue'; }
-    if (kind === 'N') { return 'pink'; }
-    if (kind === 'D') { return 'lightgreen'; }
-    return 'yellow';
-}
-
-export const getKind = (kind: string) => {
-    if (kind === 'A') { return 'Axiom'; }
-    if (kind === 'N') { return 'Common Notion'; }
-    if (kind === 'D') { return 'Definition'; }
-    if (kind === 'P') { return 'Propositon'; }
-    return '';
-}
-
+// Data Manipulation functions
 export const getRoot = (data: Data, node: string, centerX: number, centerY: number): [{ [key: string]: Node }, Set<string>] => { 
     let nodes: { [key: string]: Node } = {};
     let edges: Set<string> = new Set<string>();
@@ -93,4 +72,37 @@ export const removeNode = (data: Data, node: string, nodes: { [key: string]: Nod
     }
 
     return [nodes, edges]
+}
+
+// Node properties
+export const getNode = (data: Data, name: string) => {
+    const kind = name[0];
+    const [book, prop] = name.slice(1).split('.')
+    
+    return data[book][kind][prop]
+}
+
+export const getColor = (kind: string) => {
+    if (kind === 'A') { return 'lightblue'; }
+    if (kind === 'N') { return 'pink'; }
+    if (kind === 'D') { return 'lightgreen'; }
+    return 'yellow';
+}
+
+export const getKind = (kind: string) => {
+    if (kind === 'A') { return 'Axiom'; }
+    if (kind === 'N') { return 'Common Notion'; }
+    if (kind === 'D') { return 'Definition'; }
+    if (kind === 'P') { return 'Propositon'; }
+    return '';
+}
+
+export const getTitle = (node: string) => {
+    const kind = getKind(node[0]);
+    const [book, prop] = node.slice(1).split('.')
+
+    if (kind === 'Axiom' || kind === 'Common Notion') {
+        return kind + ' ' + prop
+    }
+    return 'Book ' + book + ' ' + kind + ' ' + prop
 }

@@ -1,9 +1,12 @@
 import "react-pdf/dist/esm/Page/TextLayer.css";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css"
-import { Button, styled, Toolbar } from "@mui/material";
+import { AppBar, Button, IconButton, styled, Toolbar, Typography } from "@mui/material";
 import { useState } from "react";
 import ReactModal from "react-modal";
 import { Document, Page } from 'react-pdf';
+
+import CloseIcon from '@mui/icons-material/Close';
+import { getTitle } from "../data/dataUtils";
 
 type NoteTextModalProps = {
     node: string;
@@ -19,10 +22,17 @@ const NoteTextModal: React.FC<NoteTextModalProps> = ({ node, closeModal }) => {
     }
 
     return (
-        <ReactModal isOpen={node !== ''}>
-            <Toolbar variant="dense">
-                <Button onClick={closeModal}>Close</Button>
-            </Toolbar>
+        <ReactModal isOpen={node !== ''} style={{ content: { padding: 0 } }} >
+            <AppBar position="sticky">
+                <Toolbar variant="dense">
+                    <Title variant="h6">
+                        {getTitle(node)}
+                    </Title>
+                    <StyledButton onClick={closeModal}>
+                        <CloseIcon />
+                    </StyledButton>
+                </Toolbar>
+            </AppBar>
             <DocumentViewer
                 file={`../docs/${node}.pdf`}
                 onLoadSuccess={onDocumentLoadSuccess}>
@@ -40,12 +50,23 @@ const NoteTextModal: React.FC<NoteTextModalProps> = ({ node, closeModal }) => {
     );
 }
 
-const DocumentViewer = styled(Document)({
-    display: "flex",
+const Title = styled(Typography)({
+    flexGrow: '1',
 })
 
+const StyledButton = styled(IconButton)({
+    color: 'white',
+});
+
+const DocumentViewer = styled(Document)({
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-evenly',
+});
+
 const PageViewer = styled(Page)({
+    height: 'fit-content',
     width: 'fit-content',
-})
+});
 
 export default NoteTextModal;
