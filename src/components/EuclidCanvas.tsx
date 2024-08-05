@@ -51,7 +51,7 @@ const NodeComponent: React.FC<NodeComponentProps> = ({ nodeName, x, y, dragFunc,
                 fill={color}
                 radius={25}
             />
-            <Text fill='black' text={nodeName} x={-25} y={-25} width={50} height={50} align="center" verticalAlign="middle" />
+            <Text fill='black' text={nodeName.slice(1)} x={-25} y={-25} width={50} height={50} align="center" verticalAlign="middle" />
         </Group>
     );
 }
