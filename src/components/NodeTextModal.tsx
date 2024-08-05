@@ -1,6 +1,6 @@
 import "react-pdf/dist/esm/Page/TextLayer.css";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css"
-import { AppBar, Button, IconButton, styled, Toolbar, Typography } from "@mui/material";
+import { AppBar, IconButton, styled, Toolbar, Typography } from "@mui/material";
 import { useState } from "react";
 import ReactModal from "react-modal";
 import { Document, Page } from 'react-pdf';

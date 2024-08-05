@@ -1,5 +1,4 @@
 import { useContext, useState } from "react";
-import ReactModal from 'react-modal';
 
 import DataContext from "../providers";
 import { DataContextType, Node } from "../types/types";

@@ -1,4 +1,4 @@
-import { AppBar, IconButton, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
+import { AppBar, Button, IconButton, Menu, MenuItem, styled, Toolbar, Typography } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import React, { useContext } from "react";
@@ -66,9 +66,16 @@ const NavBar: React.FC<NavBarProps> = ({ updateDisplay }) => {
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     Euclid<sup>21</sup> Dependency Visualizer
                 </Typography>
+                <StyledButton>About</StyledButton>
             </Toolbar>
         </AppBar>
     );
 }
+
+const StyledButton = styled(Button)({
+    borderRadius: '20px',
+    color: 'white',
+    textTransform: 'none',
+})
 
 export default NavBar;

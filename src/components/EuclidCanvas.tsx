@@ -9,7 +9,7 @@ import {
 
 import { Node, NodeOperations } from '../types/types'
 
-import { getColor, getNode } from "../data/dataUtils";
+import { getColor } from "../data/dataUtils";
 
 
 function createConnectionPoints(from: Node, to: Node) {
