@@ -108,6 +108,7 @@ const EuclidCanvas: React.FC<EuclidCanvasProps> = ({ nodes, edges, nodeOperation
 
     const nodeObjs = Object.keys(nodes).map((nodeName: string) =>
         <NodeComponent
+            key={nodeName}
             nodeName={nodeName}
             dragFunc={handleStepDrag}
             x={nodes[nodeName].x}

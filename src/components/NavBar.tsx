@@ -22,12 +22,13 @@ const DataMenu: React.FC<DataMenuProps> = ({ popupState, updateDisplay }) => {
         <Menu {...bindMenu(popupState)}>
             {Object.keys(data).map((bookNum: string) =>
                 <NestedMenuItem
+                    key={bookNum}
                     label={bookNum === '0' ? 'Axioms' : 'Book ' + bookNum}
                     parentMenuOpen={popupState.isOpen}>
                     {Object.keys(data[bookNum]).map((kind: string) =>
-                        <NestedMenuItem label={getKind(kind) + 's'} parentMenuOpen>
+                        <NestedMenuItem key={kind} label={getKind(kind) + 's'} parentMenuOpen>
                             {Object.keys(data[bookNum][kind]).map((prop: string) =>
-                                <MenuItem onClick={() => { updateDisplay(kind + bookNum + '.' + prop) }}>{getKind(kind) + ' ' + prop}</MenuItem>
+                                <MenuItem key={prop} onClick={() => { updateDisplay(kind + bookNum + '.' + prop) }}>{getKind(kind) + ' ' + prop}</MenuItem>
                             )}
                         </NestedMenuItem>
                     )}

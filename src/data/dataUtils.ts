@@ -104,5 +104,5 @@ export const getTitle = (node: string) => {
     if (kind === 'Axiom' || kind === 'Common Notion') {
         return kind + ' ' + prop
     }
-    return 'Book ' + book + ' ' + kind + ' ' + prop
+    return 'Book ' + book + ', ' + kind + ' ' + prop
 }
