@@ -5,7 +5,7 @@ import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import { pdfjs } from 'react-pdf';
 import {
-  BrowserRouter,
+  HashRouter,
   Route,
   Routes,
 } from "react-router-dom";
@@ -27,11 +27,11 @@ const data: Data = require('./data/data.json');
 root.render(
   <React.StrictMode>
     <DataContext.Provider value={{ data }}>
-    <BrowserRouter>
+    <HashRouter>
         <Routes>
           <Route path='/*' element={<App />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </DataContext.Provider>
   </React.StrictMode>
 );
