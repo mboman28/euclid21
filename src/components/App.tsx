@@ -6,7 +6,6 @@ import About from "./About";
 import Help from "./Help";
 
 function App() {
-  // TODO: react router + about page
   return (
     <>
       <NavBar />

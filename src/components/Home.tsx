@@ -32,6 +32,7 @@ const Home: React.FC<HomeProps> = () => {
             </ButtonContainer>
             <p>To learn how to use this app, visit the <Link to='/help'>help page</Link>.</p>
             <p>For more information on this project, visit the <Link to='/about'>about page</Link>.</p>
+            <p>Copyright © 2024 Mary Boman. Free to distribute under the <a href='https://www.gnu.org/licenses/#GPL'>GNU General Public License</a>.</p>
         </HomeContainer>
     );
 }
@@ -53,7 +54,6 @@ const CNButton = styled(NodeButton)({
 });
 
 const ButtonContainer = styled('div')({
-    backgroundColor: 'white',
     display: 'flex',
     width: 'fit-content',
 })

@@ -37,6 +37,7 @@ const Help: React.FC<HelpProps> = () => {
                     </ul>
                 </li>
             </ol>
+            <p>Copyright © 2024 Mary Boman. Free to distribute under the <a href='https://www.gnu.org/licenses/#GPL'>GNU General Public License</a>.</p>
         </Container>
     );
 }

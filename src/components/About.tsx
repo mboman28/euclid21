@@ -24,6 +24,8 @@ const About: React.FC<AboutProps> = () => {
             <p>The original paper, including a link to the original Java code:  <a href='https://old.maa.org/press/periodicals/convergence/euclid21-euclids-elements-for-the-21st-century'>Euclid<sup>21</sup>: Euclid's Elements for the 21st Century</a>.</p>
 
             <p>Updated version written in React for the web by Mary Boman.</p>
+
+            <p>Copyright © 2024 Mary Boman. Free to distribute under the <a href='https://www.gnu.org/licenses/#GPL'>GNU General Public License</a>.</p>
         </Container>
     );
 }
