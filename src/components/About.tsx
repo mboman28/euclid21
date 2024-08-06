@@ -18,10 +18,10 @@ const About: React.FC<AboutProps> = () => {
                         <li>Alexandra Milbrand</li>
                     </ul>
                 </li>    
-                <li>Mary Boman, Student, Bryn Mawr College </li>
+                <li>Mary Boman, Student, Bryn Mawr College</li>
             </ul>
 
-            <p>The original paper, including a link to the original Java code:  <a href='https://old.maa.org/press/periodicals/convergence/euclid21-euclids-elements-for-the-21st-century'>Euclid<sup>21</sup>: Euclid's Elements for the 21st Century</a>.</p>
+            <p>The original paper, including a link to the original Java code: <a href='https://old.maa.org/press/periodicals/convergence/euclid21-euclids-elements-for-the-21st-century'>Euclid<sup>21</sup>: Euclid's Elements for the 21st Century</a>.</p>
 
             <p>Updated version written in React for the web by Mary Boman.</p>
 
