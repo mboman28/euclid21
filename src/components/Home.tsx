@@ -43,6 +43,10 @@ const NodeButton = styled(Button)({
 
     margin: '0 10px',
     padding: '5px 10px',
+
+    ':hover': {
+        backgroundColor: 'lightgray',
+    }
 });
 
 const AxiomButton = styled(NodeButton)({
