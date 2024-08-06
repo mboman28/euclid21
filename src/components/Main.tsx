@@ -73,7 +73,11 @@ const Main: React.FC<MainProps> = () => {
 
     useEffect(() => {
         const nodeParam = searchParams.get('p');
-        if (nodeParam === null) { return; }
+        if (nodeParam === null) { 
+            setNodes({});
+            setEdges(new Set<string>())
+            return;
+         }
         displayNode(nodeParam);
         
         // eslint-disable-next-line
