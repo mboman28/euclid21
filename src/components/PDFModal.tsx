@@ -8,12 +8,12 @@ import { Document, Page } from 'react-pdf';
 import CloseIcon from '@mui/icons-material/Close';
 import { getTitle } from "../data/dataUtils";
 
-type NoteTextModalProps = {
+type PDFModalProps = {
     node: string;
     closeModal: () => void;
 }
 
-const NoteTextModal: React.FC<NoteTextModalProps> = ({ node, closeModal }) => {
+const PDFModal: React.FC<PDFModalProps> = ({ node, closeModal }) => {
     const [numPages, setNumPages] = useState(null);
 
     //@ts-ignore
@@ -69,4 +69,4 @@ const PageViewer = styled(Page)({
     width: 'fit-content',
 });
 
-export default NoteTextModal;
+export default PDFModal;

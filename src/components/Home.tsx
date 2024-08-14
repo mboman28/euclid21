@@ -2,7 +2,6 @@ import { Button, styled } from "@mui/material";
 import { useNavigate } from "react-router";
 
 import { Container } from "./shared"
-import { Link } from "react-router-dom";
 
 type HomeProps = {
 }

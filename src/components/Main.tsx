@@ -8,7 +8,7 @@ import { DataContextType, Node } from "../types/types";
 import { getDeps, getRoot, getBranch, removeNode } from "../data/dataUtils";
 
 import EuclidCanvas from "./EuclidCanvas";
-import NodeTextModal from "./NodeTextModal";
+import PDFModal from "./PDFModal";
 import Home from "./Home";
 
 type MainProps = {
@@ -79,8 +79,7 @@ const Main: React.FC<MainProps> = () => {
             return;
          }
         displayNode(nodeParam);
-        
-        // eslint-disable-next-line
+        //eslint-disable-next-line
     }, [searchParams])
 
     return (
@@ -88,7 +87,7 @@ const Main: React.FC<MainProps> = () => {
             {Object.keys(nodes).length === 0 ?
                 <Home /> :
                 <>
-                    <NodeTextModal node={openNode} closeModal={() => setOpenNode('')} />
+                    <PDFModal node={openNode} closeModal={() => setOpenNode('')} />
                     <EuclidCanvas nodes={nodes} edges={edges} nodeOperations={nodeOps} setNodes={setNodes} />
                 </>}
         </>
