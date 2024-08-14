@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import DataContext from "../providers";
 
@@ -20,6 +20,8 @@ const Main: React.FC<MainProps> = () => {
     const [nodes, setNodes] = useState<{ [key: string]: Node }>({});
     const [edges, setEdges] = useState<Set<string>>(new Set<string>());
     const [searchParams] = useSearchParams();
+
+    const navigate = useNavigate();
 
     const updateNodes = (nodes: { [key: string]: Node }) => {
         for (const nodeName in nodes) {
@@ -55,6 +57,10 @@ const Main: React.FC<MainProps> = () => {
 
     const hideNode = (node: string) => {
         const [newNodes, newEdges] = removeNode(data, node, nodes, edges);
+        if (Object.keys(newNodes).length == 0){
+            navigate('/');
+            return;
+        }
         updateNodes({ ...newNodes });
         setEdges(newEdges);
     }
