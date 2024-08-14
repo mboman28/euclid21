@@ -30,9 +30,9 @@ const Home: React.FC<HomeProps> = () => {
                 <CNButton onClick={() => {navigate('/?p=N0.4')}}>Common Notion 4</CNButton>
                 <CNButton onClick={() => {navigate('/?p=N0.5')}}>Common Notion 5</CNButton>
             </ButtonContainer>
-            <p>To learn how to use this app, visit the <Link to='/help'>help page</Link>.</p>
+            {/* <p>To learn how to use this app, visit the <Link to='/help'>help page</Link>.</p>
             <p>For more information on this project, visit the <Link to='/about'>about page</Link>.</p>
-            <p>Copyright © 2024 Mary Boman. Free to distribute under the <a href='https://www.gnu.org/licenses/#GPL'>GNU General Public License</a>.</p>
+            <p>Copyright © 2024 Mary Boman. Free to distribute under the <a href='https://www.gnu.org/licenses/#GPL'>GNU General Public License</a>.</p> */}
         </HomeContainer>
     );
 }

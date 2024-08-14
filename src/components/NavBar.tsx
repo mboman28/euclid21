@@ -66,8 +66,8 @@ const NavBar: React.FC<NavBarProps> = () => {
                 <Typography variant="h6" component="div" onClick={ () => { navigate('/')} } sx={{ flexGrow: 1, cursor: 'pointer' }}>
                     Euclid<sup>21</sup>: Euclid's Elements for the 21st Century
                 </Typography>
-                <StyledButton onClick={() => { navigate('/help') }}>Help</StyledButton>
-                <StyledButton onClick={() => { navigate('/about') }}>About</StyledButton>
+                {/* <StyledButton onClick={() => { navigate('/help') }}>Help</StyledButton>
+                <StyledButton onClick={() => { navigate('/about') }}>About</StyledButton> */}
             </Toolbar>
         </AppBar>
     );
