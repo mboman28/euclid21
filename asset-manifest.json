@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/euclid21/static/css/main.414d8e77.css",
-    "main.js": "/euclid21/static/js/main.9614933e.js",
+    "main.js": "/euclid21/static/js/main.89817a8e.js",
     "static/media/pdf.worker.min.mjs": "/euclid21/static/media/pdf.worker.min.251d69a696d4b789725e.mjs",
     "index.html": "/euclid21/index.html",
     "main.414d8e77.css.map": "/euclid21/static/css/main.414d8e77.css.map",
-    "main.9614933e.js.map": "/euclid21/static/js/main.9614933e.js.map"
+    "main.89817a8e.js.map": "/euclid21/static/js/main.89817a8e.js.map"
   },
   "entrypoints": [
     "static/css/main.414d8e77.css",
-    "static/js/main.9614933e.js"
+    "static/js/main.89817a8e.js"
   ]
 }
