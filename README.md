@@ -1,5 +1,7 @@
 ## Euclid<sup>21</sup>: Euclid's Elements for the 21st Century
 
+This application is hosted with GitHub Pages. [See it in action!](https://mboman28.github.io/euclid21/)
+
 ### About
 
 This project was originally a standalone Java application, written between January 2012 to April 2014 by:
