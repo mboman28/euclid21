@@ -1,8 +1,5 @@
 ## Euclid<sup>21</sup>: Euclid's Elements for the 21st Century
 
-TODO: update GH Pages link once live.
-This application is hosted by GitHub Pages. [See it in action.](github.com)
-
 ### About
 
 This project was originally a standalone Java application, written between January 2012 to April 2014 by:
