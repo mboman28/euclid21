@@ -57,7 +57,7 @@ const Main: React.FC<MainProps> = () => {
 
     const hideNode = (node: string) => {
         const [newNodes, newEdges] = removeNode(data, node, nodes, edges);
-        if (Object.keys(newNodes).length == 0){
+        if (Object.keys(newNodes).length === 0){
             navigate('/');
             return;
         }
