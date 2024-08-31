@@ -23,7 +23,7 @@ const About: React.FC<AboutProps> = () => {
 
             <p>The original paper, including a link to the original Java code, can be found here: <a href='https://old.maa.org/press/periodicals/convergence/euclid21-euclids-elements-for-the-21st-century'>Euclid<sup>21</sup>: Euclid's Elements for the 21st Century</a>.</p>
 
-            <p>Updated version written in React for the web by Mary Boman and hosted with GitHub Pages. Source code can be found in the <a href="https://github.com/mboman28/euclid21">GitHub repository</a>,</p>
+            <p>Updated version written in React for the web by Mary Boman and hosted with GitHub Pages. Source code can be found in the <a href="https://github.com/mboman28/euclid21">GitHub repository</a>.</p>
 
             <p>Copyright © 2024 Mary Boman. Free to distribute under the <a href='https://www.gnu.org/licenses/#GPL'>GNU General Public License</a>.</p>
         </Container>
