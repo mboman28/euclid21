@@ -34,7 +34,7 @@ const PDFModal: React.FC<PDFModalProps> = ({ node, closeModal }) => {
                 </Toolbar>
             </AppBar>
             <DocumentViewer
-                file={`../docs/${node}.pdf`}
+                file={`docs/${node}.pdf`}
                 onLoadSuccess={onDocumentLoadSuccess}>
                 {Array.from(
                     new Array(numPages),
