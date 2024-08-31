@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import DataContext from "../providers";
 import { DataContextType } from "../types/types";
 import { getKind } from "../data/dataUtils";
+import { GHIcon } from "./shared";
 
 type DataMenuProps = {
     popupState: PopupStateType;
@@ -28,7 +29,7 @@ const DataMenu: React.FC<DataMenuProps> = ({ popupState }) => {
                     {Object.keys(data[bookNum]).map((kind: string) =>
                         <NestedMenuItem key={kind} label={getKind(kind) + 's'} parentMenuOpen>
                             {Object.keys(data[bookNum][kind]).map((prop: string) =>
-                                <MenuItem key={prop} onClick={() => { navigate('/?p=' + kind + bookNum + '.' + prop)}}>{getKind(kind) + ' ' + prop}</MenuItem>
+                                <MenuItem key={prop} onClick={() => { navigate('/?p=' + kind + bookNum + '.' + prop) }}>{getKind(kind) + ' ' + prop}</MenuItem>
                             )}
                         </NestedMenuItem>
                     )}
@@ -63,9 +64,16 @@ const NavBar: React.FC<NavBarProps> = () => {
                         </>
                     )}
                 </PopupState>
-                <Typography variant="h6" component="div" onClick={ () => { navigate('/')} } sx={{ flexGrow: 1, cursor: 'pointer' }}>
+                <Typography variant="h6" component="div" onClick={() => { navigate('/') }} sx={{ flexGrow: 1, cursor: 'pointer' }}>
                     Euclid<sup>21</sup>: Euclid's Elements for the 21st Century
                 </Typography>
+                <IconButton
+                    size="small"
+                    edge="start"
+                    href="https://github.com/mboman28/euclid21"
+                >
+                    <GHIcon />
+                </IconButton>
                 <StyledButton onClick={() => { navigate('/help') }}>Help</StyledButton>
                 <StyledButton onClick={() => { navigate('/about') }}>About</StyledButton>
             </Toolbar>
