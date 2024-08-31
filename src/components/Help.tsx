@@ -30,7 +30,7 @@ const Help: React.FC<HelpProps> = () => {
                 <li>Right-click for pull-down menu:
                     <ul>
                         <li><strong>Root</strong> - display graph level one up (all nodes referenced in the proof of the current node)</li>
-                        <li><strong>Branch</strong> - display graph level one down (all nodes whose proof refer- ences the current node)</li>
+                        <li><strong>Branch</strong> - display graph level one down (all nodes whose proof references the current node)</li>
                         <li><strong>Display This Node</strong> - display that node along with its root and branch in display area; all other nodes will disappear</li>
                         <li><strong>Hide This Node</strong> - deletes the node; the node and all its edges will disappear along with any other nodes that are no longer attached to any edges</li>
                         <li><strong>Highlight</strong> - all arrows in and out of the node are highlighted in red; if this node is currently highlighted, this reverses</li>
