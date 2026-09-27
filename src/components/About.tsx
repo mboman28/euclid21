@@ -21,6 +21,8 @@ const About: React.FC<AboutProps> = () => {
                 <li>Mary Boman, Student, Bryn Mawr College</li>
             </ul>
 
+            <p>Based on the translation of <i>Euclid's Elements of Geometry</i> by Dr. Richard Fitzpatrick, The University of Texas.</p>
+
             <p>The original paper, including a link to the original Java code, can be found here: <a href='https://old.maa.org/press/periodicals/convergence/euclid21-euclids-elements-for-the-21st-century'>Euclid<sup>21</sup>: Euclid's Elements for the 21st Century</a>.</p>
 
             <p>Updated version written in React for the web by Mary Boman and hosted with GitHub Pages. Source code can be found in the <a href="https://github.com/mboman28/euclid21">GitHub repository</a>.</p>
